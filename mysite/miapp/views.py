@@ -33,7 +33,7 @@ def usuario_tipo_delete(request, id_usuario_tipo):
 # Funciones Pais
 def paises_lista(request):
     paises = Pais.objects.all()
-    return render(request, 'usuario/paises.html', {'paies':paises})
+    return render(request, 'usuario/paises.html', {'paises':paises})
 
 def pais_create(request):
     if request.method == 'POST':

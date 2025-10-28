@@ -13,5 +13,5 @@ urlpatterns = [
     # URLs Pais
     path('usuario/paises/', paises_lista, name = 'paises_lista'),
     path('usuario/crearpaises', pais_create, name = 'pais_create'),
-    path('usuario/paises/eliminar/>str:id_pais>/', views.pais_delete, name='pais_delete'),
+    path('usuario/paises/eliminar/<str:id_pais>/', views.pais_delete, name='pais_delete'),
 ]
