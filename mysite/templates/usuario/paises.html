@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pais</title>
+</head>
+<body>
+    <h1>Tabla de Paises</h1>
+    <a href="{% url 'pais_create' %}">Agregar País</a>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Pais</th>
+            <th>Acciones</th>
+        </tr>
+        {% for pais in paises %}
+        <tr>
+            <td>{{ pais.id_pais }}</td>
+            <td>{{ pais.pais}}</td>
+            <td>
+                <a href=" {% url 'pais_delete' id_pais=pais.id_pais %}">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
+
+<body>
+    <h1>Tabla de Tipos de Usuario</h1>
+    <a href="{% url 'usuario_tipo_create' %}">Agregar Tipo de Usuario</a>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Tipo de Usuario</th>
+            <th>Acciones</th>
+        </tr>
+        {% for usuario_tipo in usuariostipos %}
+        <tr>
+            <td>{{ usuario_tipo.id_usuario_tipo }}</td>
+            <td>{{ usuario_tipo.usuario_tipo }}</td>
+            <td>
+                <a href="{% url 'usuario_tipo_delete' id_usuario_tipo=usuario_tipo.id_usuario_tipo %}">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
+
+
