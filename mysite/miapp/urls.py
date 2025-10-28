@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from .views import usuarios_tipos_lista, usuario_tipo_create, paises_lista, pais_create, regiones_lista, region_create
+from .views import usuarios_tipos_lista, usuario_tipo_create, paises_lista, pais_create, regiones_lista, region_create, documentos_tipos_lista, documento_tipo_create
 
 urlpatterns = [
     path('index/', views.index, name='index'),
@@ -19,4 +19,13 @@ urlpatterns = [
     path('usuario/regiones/', regiones_lista, name='regiones_lista'),
     path('usuario/crearregiones', region_create, name='region_create'),
     path('usuario/regiones/eliminar/<str:id_region>/', views.region_delete, name='region_delete'),
+
+    # URLs Usuario
+
+    # URLs Documento Tipo
+    path('documento/documentostipos', documentos_tipos_lista, name='documentos_tipos_lista'),
+    path('documento/creardocumentostipos', documento_tipo_create, name='documento_tipo_create'),
+    path('documento/documentos/eliminar/<str:id_documento_tipo>/', views.documento_tipo_delete, name='documento_tipo_delete'),
+
+    # URLs Documento
 ]

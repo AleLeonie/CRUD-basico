@@ -1,13 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
 
-from .models import UsuarioTipo, Pais, Region
-from .forms import UsuarioTipoForm, PaisForm, RegionForm
+from .models import UsuarioTipo, Pais, Region, DocumentoTipo
+from .forms import UsuarioTipoForm, PaisForm, RegionForm, DocumentoTipoForm
 
 # Create your views here.
 
 def index(request):
     return render(request, 'index.html')
-
 
 # Funciones Usuario Tipo
 def usuarios_tipos_lista(request):
@@ -73,3 +72,27 @@ def region_delete(request, id_region):
     return redirect('regiones_lista')
 
 # Funciones Usuario
+
+
+# Funciones Documento Tipo
+def documentos_tipos_lista(request):
+    documentos_tipos = DocumentoTipo.objects.all()
+    return render(request, 'documento/documentostipos.html', {'documentostipos': documentos_tipos})
+
+def documento_tipo_create(request):
+    if request.method == 'POST':
+        form = DocumentoTipoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('documentos_tipos_lista')
+    else:
+        form = DocumentoTipoForm()
+    
+    return render(request, 'documento/documentostipos_form.html', {'form': form})
+
+def documento_tipo_delete(request, id_documento_tipo):
+    documento_tipo = get_object_or_404(DocumentoTipo, id_documento_tipo=id_documento_tipo)
+    documento_tipo.delete()
+    return redirect('documentos_tipos_lista')
+
+# Funciones Documento

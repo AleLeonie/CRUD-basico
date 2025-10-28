@@ -1,5 +1,5 @@
 from django import forms
-from .models import UsuarioTipo, Pais, Region
+from .models import UsuarioTipo, Pais, Region, DocumentoTipo
 
 class UsuarioTipoForm(forms.ModelForm):
     class Meta:
@@ -15,3 +15,8 @@ class RegionForm(forms.ModelForm):
     class Meta:
         model = Region
         fields = ['id_region', 'region']
+
+class DocumentoTipoForm(forms.ModelForm):
+    class Meta:
+        model = DocumentoTipo
+        fields = ['id_documento_tipo', 'documento_tipo']

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documento Tipo</title>
+</head>
+<body>
+    <h1>Tabla de Tipos de Documentos</h1>
+    <a href="{% url 'documento_tipo_create' %}">Agregar Tipo de Documento</a>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Tipo de Documento</th>
+            <th>Acciones</th>
+        </tr>
+        {% for documento_tipo in documentostipos %}
+        <tr>
+            <td>{{ documento_tipo.id_documento_tipo }}</td>
+            <td>{{ documento_tipo.documento_tipo }}</td>
+            <td>
+                <a href="{% url 'documento_tipo_delete' id_documento_tipo=documento_tipo.id_documento_tipo %}">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
