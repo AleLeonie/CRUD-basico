@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 
-from .models import UsuarioTipo, Pais
-from .forms import UsuarioTipoForm, PaisForm
+from .models import UsuarioTipo, Pais, Region
+from .forms import UsuarioTipoForm, PaisForm, RegionForm
 
 # Create your views here.
 
@@ -52,7 +52,24 @@ def pais_delete(request, id_pais):
     return redirect('paises_lista')
 
 # Funciones Region
+def regiones_lista(request):
+    regiones = Region.objects.all()
+    return render(request, 'usuario/regiones.html', {'regiones':regiones})
 
+def region_create(request):
+    if request.method == 'POST':
+        form = RegionForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('regiones_lista')
+    else:
+        form = RegionForm()
 
+    return render(request, 'usuario/regiones_form.html', {'form': form})
+
+def region_delete(request, id_region):
+    region = get_object_or_404(Region, id_region=id_region)
+    region.delete()
+    return redirect('regiones_lista')
 
 # Funciones Usuario

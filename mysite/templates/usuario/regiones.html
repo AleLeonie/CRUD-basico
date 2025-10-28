@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Región</title>
+</head>
+<body>
+    <h1>Tabla de Regiones</h1>
+    <a href="{% url 'region_create' %}">Agregar Región</a>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Región</th>
+            <th>Acciones</th>
+        </tr>
+        {% for region in regiones %}
+        <tr>
+            <td>{{ region.id_region }}</td>
+            <td>{{ region.region }}</td>
+            <td>
+                <a href=" {% url 'region_delete' id_region=region.id_region %}">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
