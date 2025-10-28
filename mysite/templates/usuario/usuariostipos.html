@@ -19,6 +19,7 @@
             <td>{{ usuario_tipo.id_usuario_tipo }}</td>
             <td>{{ usuario_tipo.usuario_tipo }}</td>
             <td>
+                <a href="{% url 'usuario_tipo_update' id_usuario_tipo=usuario_tipo.id_usuario_tipo %}">Editar</a> 
                 <a href="{% url 'usuario_tipo_delete' id_usuario_tipo=usuario_tipo.id_usuario_tipo %}">Eliminar</a>
             </td>
         </tr>

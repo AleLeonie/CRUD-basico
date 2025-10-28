@@ -19,6 +19,7 @@
             <td>{{ pais.id_pais }}</td>
             <td>{{ pais.pais}}</td>
             <td>
+                <a href="{% url 'pais_update' id_pais=pais.id_pais %}">Editar</a>
                 <a href=" {% url 'pais_delete' id_pais=pais.id_pais %}">Eliminar</a>
             </td>
         </tr>

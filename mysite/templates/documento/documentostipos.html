@@ -19,6 +19,7 @@
             <td>{{ documento_tipo.id_documento_tipo }}</td>
             <td>{{ documento_tipo.documento_tipo }}</td>
             <td>
+                <a href="{% url 'documento_tipo_update' id_documento_tipo=documento_tipo.id_documento_tipo %}">Editar</a>
                 <a href="{% url 'documento_tipo_delete' id_documento_tipo=documento_tipo.id_documento_tipo %}">Eliminar</a>
             </td>
         </tr>
