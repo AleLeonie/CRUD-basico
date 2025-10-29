@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 
-from .models import UsuarioTipo, Pais, Region, DocumentoTipo
-from .forms import UsuarioTipoForm, PaisForm, RegionForm, DocumentoTipoForm
+from .models import UsuarioTipo, Pais, Region, Usuario, DocumentoTipo
+from .forms import UsuarioTipoForm, PaisForm, RegionForm, UsuarioForm, DocumentoTipoForm
 
 # Create your views here.
 
@@ -118,6 +118,42 @@ def region_delete(request, id_region):
     region = get_object_or_404(Region, id_region=id_region)
     region.delete()
     return redirect('regiones_lista')
+
+# Funciones Usuario
+def usuarios_lista(request):
+    usuarios = Usuario.objects.all()
+    return render(request, 'usuario/usuarios.html', {'usuarios': usuarios})
+
+def usuario_create(request):
+    if request.method == 'POST':
+        form = UsuarioForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('usuarios_lista')
+    else:
+        form = UsuarioForm()
+
+    return render(request, 'usuario/usuario_form.html', {'form': form})
+
+def usuario_update(request, id_usuario):
+    usuario = get_object_or_404(Usuario, id_usuario=id_usuario)
+    if request.method == 'POST':
+        form = UsuarioForm(request.POST, instance=usuario)
+        # Deshabilitar el campo de la clave primaria
+        form.fields['id_usuario'].disabled = True
+        if form.is_valid():
+            form.save()
+            return redirect('usuarios_lista')
+    else:
+        form = UsuarioForm(instance=usuario)
+        form.fields['id_usuario'].disabled = True  # Deshabilitar el campo de la clave primaria
+    
+    return render(request, 'usuario/usuario_form.html', {'form': form})
+
+def usuario_delete(request, id_usuario):
+    usuario = get_object_or_404(Usuario, id_usuario=id_usuario)
+    usuario.delete()
+    return redirect('usuarios_lista')
 
 # Funciones Documento Tipo
 def documentos_tipos_lista(request):

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuarios</title>
+</head>
+<body>
+    <h1>Tabla de Usuarios</h1>
+    <a href="{% url 'usuario_create' %}">Agregar Usuario</a>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>ID Tipo de Usuario</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Telefono</th>
+            <th>Email</th>
+            <th>Dirección</th>
+            <th>Región</th>
+            <th>País</th>
+            <th>Acciones</th>
+        </tr>
+        {% for usuario in usuarios %}
+        <tr>
+            <td>{{ usuario.id_usuario }}</td>
+            <td>{{ usuario.id_usuario_tipo.usuario_tipo }}</td> 
+            <td>{{ usuario.usuario_nombre }}</td>
+            <td>{{ usuario.usuario_apellido }}</td>
+            <td>{{ usuario.telefono }}</td>
+            <td>{{ usuario.email }}</td>
+            <td>{{ usuario.direccion }}</td>
+            <td>{{ usuario.id_region.region }}</td> 
+            <td>{{ usuario.id_pais.pais }}</td>
+            <td>
+                <a href="{% url 'usuario_update' id_usuario=usuario.id_usuario %}">Editar</a>
+                <a href="{% url 'usuario_delete' id_usuario=usuario.id_usuario %}">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
