@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentos</title>
+</head>
+<body>
+    <h1>Tabla de Documentos</h1>
+    <a href="{% url 'documento_create' %}">Agregar Documento</a>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Usuario</th>
+            <th>Tipo de Documento</th>
+            <th>Acciones</th>
+        </tr>
+        {% for documento in documentos %}
+        <tr>
+            <td>{{ documento.id_documento }}</td>
+            <td>{{ documento.documento_nombre }}</td>
+            <td>{{ documento.id_usuario.usuario_nombre }}</td>
+            <td>{{ documento.id_documento_tipo.documento_tipo }}</td>
+            <td>
+                <a href="{% url 'documento_update' id_documento=documento.id_documento %}">Editar</a>
+                <a href="{% url 'documento_delete' id_documento=documento.id_documento %}">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

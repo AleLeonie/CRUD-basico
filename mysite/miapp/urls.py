@@ -35,4 +35,9 @@ urlpatterns = [
     path('documento/documentostipos/editar/<str:id_documento_tipo>/', views.documento_tipo_update, name='documento_tipo_update'),
     path('documento/documentos/eliminar/<str:id_documento_tipo>/', views.documento_tipo_delete, name='documento_tipo_delete'),
 
+    # URLs Documento
+    path('documento/documentos/', views.documentos_lista, name='documentos_lista'),
+    path('documento/creardocumento/', views.documento_create, name='documento_create'),
+    path('documento/editardocumento/<str:id_documento>/', views.documento_update, name='documento_update'),
+    path('documento/eliminardocumento/<str:id_documento>/', views.documento_delete, name='documento_delete'),
 ]

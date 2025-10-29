@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 
-from .models import UsuarioTipo, Pais, Region, Usuario, DocumentoTipo
-from .forms import UsuarioTipoForm, PaisForm, RegionForm, UsuarioForm, DocumentoTipoForm
+from .models import UsuarioTipo, Pais, Region, Usuario, DocumentoTipo, Documento
+from .forms import UsuarioTipoForm, PaisForm, RegionForm, UsuarioForm, DocumentoTipoForm, DocumentoForm
 
 # Create your views here.
 
@@ -193,5 +193,37 @@ def documento_tipo_delete(request, id_documento_tipo):
     return redirect('documentos_tipos_lista')
 
 # Funciones Documento
+def documentos_lista(request):
+    documentos = Documento.objects.all()
+    return render(request, 'documento/documentos.html', {'documentos': documentos})
 
-# Funciones Usuario
+def documento_create(request):
+    if request.method == 'POST':
+        form = DocumentoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('documentos_lista')
+    else:
+        form = DocumentoForm()
+
+    return render(request, 'documento/documento_form.html', {'form': form})
+
+def documento_update(request, id_documento):
+    documento = get_object_or_404(Documento, id_documento=id_documento)
+    if request.method == 'POST':
+        form = DocumentoForm(request.POST, instance=documento)
+        # Deshabilitar el campo de la clave primaria
+        form.fields['id_documento'].disabled = True
+        if form.is_valid():
+            form.save()
+            return redirect('documentos_lista')
+    else:
+        form = DocumentoForm(instance=documento)
+        form.fields['id_documento'].disabled = True  # Deshabilitar el campo de la clave primaria
+    
+    return render(request, 'documento/documento_form.html', {'form': form})
+
+def documento_delete(request, id_documento):
+    documento = get_object_or_404(Documento, id_documento=id_documento)
+    documento.delete()
+    return redirect('documentos_lista')
